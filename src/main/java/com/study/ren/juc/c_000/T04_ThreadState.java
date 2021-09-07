@@ -24,7 +24,14 @@ public class T04_ThreadState {
     }
 
     /**
-     * 线程的状态：创建、就绪、运行、阻塞、死亡
+     * 线程的状态：创建、就绪、运行、阻塞、死亡、等待、有时间的等待
+     * 详细说明：
+     *  1：NEW状态：当new Thread()时，即为创建状态
+     *  2：Runnable状态，此状态中又分为READY状态（就绪状态）和RUNNING（运行状态）
+     *  3：WAITING状态，此状态为等待状态，当线程调用wait方法后线程将会处于此状态
+     *  4：TIMED_WAITING状态，有等待时间当等待状态
+     *  5：BLOCKED状态，阻塞状态，当线程加锁之后会进入该状态
+     *  6：TERMINATED状态，死亡状态，当线程执行完毕就会进入该状态
      * @param args
      */
     public static void main(String[] args) {
