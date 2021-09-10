@@ -11,8 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * 使用Reentrantlock可以完成同样的功能
  * 需要注意的是，必须要手动释放锁
- * 使用sync锁的时候，如果遇到一场，jvm会自动释放锁，但是lock必须手动释放锁，因此经常在finally中进行锁的释放
- *
+ * 使用sync锁的时候，如果遇到异常，jvm会自动释放锁，但是lock必须手动释放锁，因此经常在finally中进行锁的释放
  */
 public class T03_ReentrantLock3 {
     Lock lock = new ReentrantLock();
@@ -21,7 +20,7 @@ public class T03_ReentrantLock3 {
         // 和synchronized(this)有同样作用
         lock.lock();
         try {
-            // 如果循环3次，tryLock就可以拿到锁了
+            // 如果循环5次以下，tryLock就可以拿到锁了，因为他等待的时间为5秒种，超过5秒则不继续尝试获取锁了
             for (int i = 0; i < 10; i++) {
                 TimeUnit.SECONDS.sleep(1);
             }
